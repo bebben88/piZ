@@ -1,6 +1,6 @@
-FROM hypriot/rpi-node:6
-#Uncommend this if building on Raspi
-ADD qemu-arm-static /usr/bin/qemu-arm-static
+FROM docker.io/project31/aarch64-alpine-qemu:3.5.4
+RUN [ "cross-build-start" ]
+
 # add support for gpio library
 RUN apt-get update
 RUN apt-get install python-rpi.gpio
@@ -34,5 +34,7 @@ EXPOSE 1880
 # Environment variable holding file path for flows configuration
 ENV FLOWS=flows.json
 ENV NODE_PATH=/usr/src/node-red/node_modules:/data/node_modules
+
+RUN [ "cross-build-end" ]
 
 CMD ["npm", "start", "--", "--userDir", "/data"]
