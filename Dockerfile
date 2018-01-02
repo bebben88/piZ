@@ -1,5 +1,4 @@
-FROM docker.io/project31/aarch64-alpine-qemu:latest
-RUN [ "cross-build-start" ]
+FROM hypriot/rpi-node:6
 
 # add support for gpio library
 RUN apt-get update
@@ -34,7 +33,5 @@ EXPOSE 1880
 # Environment variable holding file path for flows configuration
 ENV FLOWS=flows.json
 ENV NODE_PATH=/usr/src/node-red/node_modules:/data/node_modules
-
-RUN [ "cross-build-end" ]
 
 CMD ["npm", "start", "--", "--userDir", "/data"]
