@@ -1,5 +1,6 @@
 FROM hypriot/rpi-node:6
-
+#Uncommend this if building on Raspi
+ADD qemu-arm-static /usr/bin/qemu-arm-static
 # add support for gpio library
 RUN apt-get update
 RUN apt-get install python-rpi.gpio
