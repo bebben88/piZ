@@ -1,4 +1,4 @@
-FROM docker.io/project31/aarch64-alpine-qemu:3.5.4
+FROM docker.io/project31/aarch64-alpine-qemu:latest
 RUN [ "cross-build-start" ]
 
 # add support for gpio library
