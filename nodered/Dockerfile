@@ -6,7 +6,7 @@ RUN apt-get install python-rpi.gpio
 RUN apt-get install iputils-ping
 RUN apt-get install net-tools
 RUN apt-get install nano
-RUN apt-get install libbluetooth-dev
+#RUN apt-get install libbluetooth-dev
 
 # Home directory for Node-RED application source code.
 RUN mkdir -p /usr/src/node-red
@@ -21,7 +21,7 @@ RUN useradd --home-dir /usr/src/node-red --no-create-home node-red \
     && chown -R node-red:node-red /data \
     && chown -R node-red:node-red /usr/src/node-red
 
-#USER node-red
+USER node-red
 
 # package.json contains Node-RED NPM module and node dependencies
 COPY package.json /usr/src/node-red/
