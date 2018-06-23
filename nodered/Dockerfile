@@ -2,11 +2,11 @@ FROM hypriot/rpi-node:6
 
 # add support for gpio library
 RUN apt-get update
-RUN apt-get install python-rpi.gpio
-RUN apt-get install iputils-ping
-RUN apt-get install net-tools
-RUN apt-get install nano
-#RUN apt-get install libbluetooth-dev
+RUN apt-get install --no-install-recommends -y \
+    python-rpi.gpio \
+    iputils-ping \
+    net-tools \
+    nano
 
 # Home directory for Node-RED application source code.
 RUN mkdir -p /usr/src/node-red
