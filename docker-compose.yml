@@ -1,0 +1,39 @@
+version: '3.0'
+
+services:
+  openhab:
+    build: "openhab"
+    restart: always
+    network_mode: host
+    tty: true
+#    devices:
+#      - "/dev/ttyAMA0:/dev/ttyAMA0"
+    stdin_open: true
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "${HOME}/openhab/conf:/openhab/conf"
+      - "${HOME}/openhab/userdata:/openhab/userdata"
+      - "${HOME}/openhab/addons:/openhab/addons"
+      - "/var/run/dbus:/var/run/dbus"
+      - "/dev/bus/usb:/dev/bus/usb"
+    privileged: true
+    environment:
+      - OPENHAB_HTTP_PORT=8080
+      - OPENHAB_HTTPS_PORT=8443
+      - USER_ID=9001
+      - GROUP_ID=9001
+      - LC_ALL=sv_SE.UTF-8
+      - LANG=sv_SE.UTF-8
+      - LANGUAGE=sv_SE.UTF-8
+    command: "./start.sh"
+  nodered:
+    build: nodered
+    restart: always
+    ports:
+      - "1880:1880"
+    volumes:
+      - ${HOME}/nodered:/data
