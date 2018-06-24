@@ -123,7 +123,7 @@ RUN rm -rf /tmp/* \
     && apt-get remove wget \ 
     && apt-get -yqq autoremove \
     && apt-get -y clean \
-    rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/*
 
 # Expose volume with configuration and userdata dir
 VOLUME ${APPDIR}/conf ${APPDIR}/userdata ${APPDIR}/addons
