@@ -17,18 +17,19 @@ ENV BLUEZ_VERSION 5.47
 COPY "./init.d/*" /etc/init.d/
 
 #install prerequisites
-RUN apt-get update  \
+RUN apt-get update \
     && apt-get install -y openssh-server build-essential wget dbus \
        libical-dev libdbus-1-dev libglib2.0-dev libreadline-dev libudev-dev \
     && echo 'root:root' | chpasswd \
     && sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
     && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd \
-    && mkdir /var/run/sshd \
-#get BCM chip firmware 
-    && mkdir /etc/firmware \
-    && curl -o /etc/firmware/BCM43430A1.hcd -L https://github.com/OpenELEC/misc-firmware/raw/master/firmware/brcm/BCM43430A1.hcd \
+    && mkdir /var/run/sshd
+
+#get BCM chip firmware
+RUN mkdir /etc/firmware \
+    && curl -o /etc/firmware/BCM43430A1.hcd -L https://github.com/OpenELEC/misc-firmware/raw/master/firmware/brcm/BCM43430A1.hcd
 #get bluez source
-    && wget -P /tmp/ https://www.kernel.org/pub/linux/bluetooth/bluez-${BLUEZ_VERSION}.tar.gz \
+RUN wget -P /tmp/ https://www.kernel.org/pub/linux/bluetooth/bluez-${BLUEZ_VERSION}.tar.gz \
     && tar xf /tmp/bluez-${BLUEZ_VERSION}.tar.gz -C /tmp \
 #compile bluez
     && cd /tmp/bluez-${BLUEZ_VERSION} \
@@ -41,7 +42,6 @@ RUN apt-get update  \
        --enable-maintainer-mode \
        --enable-deprecated \
     && make \
-#install bluez
     && make install
 #clean up
 #    && rm -rf /tmp/* \
