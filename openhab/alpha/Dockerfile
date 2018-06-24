@@ -119,7 +119,7 @@ RUN wget -nv -O /tmp/openhab.zip ${OPENHAB_URL} && \
     echo "export TERM=dumb" | tee -a ~/.bashrc
 
 #clean up
-    rm -rf /tmp/* \
+RUN rm -rf /tmp/* \
     && apt-get remove wget \ 
     && apt-get -yqq autoremove \
     && apt-get -y clean \
