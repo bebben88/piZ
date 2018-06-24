@@ -42,7 +42,7 @@ RUN apt-get update  \
        --enable-deprecated \
     && make \
 #install bluez
-    && make install \
+    && make install
 #clean up
 #    && rm -rf /tmp/* \
 #    && apt-get remove wget \ 
