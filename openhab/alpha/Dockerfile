@@ -38,7 +38,7 @@ ARG VERSION
 
 # Install basepackages
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+    apt-get install --no-install-recommends -y \
     ca-certificates \
     dirmngr \
     fontconfig \
