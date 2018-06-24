@@ -29,7 +29,7 @@ ENV \
     LANG="en_US.UTF-8" \
     LANGUAGE="en_US.UTF-8" \
     CRYPTO_POLICY="limited" \
-    BLUEZ_VERSION 5.47 
+    BLUEZ_VERSION="5.47" 
 
 # Set arguments on build
 ARG BUILD_DATE
