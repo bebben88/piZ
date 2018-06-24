@@ -1,5 +1,5 @@
-FROM resin/armv7hf-debian:stretch
-#FROM resin/raspberry-pi-debian:latest
+#FROM resin/armv7hf-debian:stretch
+FROM resin/raspberry-pi-debian:latest
 
 # Set download urls
 ENV JAVA_URL="https://www.azul.com/downloads/zulu/zdk-8-ga-linux_aarch32hf.tar.gz" \
@@ -38,7 +38,7 @@ ARG VERSION
 
 # Install basepackages
 RUN apt-get update && \
-    apt-get install --no-install-recommends -y \
+    DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
     ca-certificates \
     dirmngr \
     fontconfig \
